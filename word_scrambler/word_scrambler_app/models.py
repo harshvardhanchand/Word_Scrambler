@@ -1,8 +1,28 @@
 from django.db import models
 
-# Create your models here.
-class DictionaryWord(models.Model):
-    word = models.CharField(max_length=100)
+from django.core.serializers.json import DjangoJSONEncoder
+class TrieNode(models.Model):
+    """A model representing a node in a trie data structure."""
+    children = models.JSONField(default=dict)
+    words = models.JSONField(default=list)
 
-    def __str__(self):
-        return self.word
+
+class Trie(models.Model):
+    """A model representing a trie data structure."""
+    root = models.ForeignKey(TrieNode, on_delete=models.CASCADE)
+
+
+
+
+
+class TrieNodeEncoder(DjangoJSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, TrieNode):
+            return {'key': obj.key, 'value': obj.value}
+        return super().default(obj)
+
+class TrieEncoder(DjangoJSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Trie):
+            return {'root': obj.root, 'size': obj.size}
+        return super().default(obj)

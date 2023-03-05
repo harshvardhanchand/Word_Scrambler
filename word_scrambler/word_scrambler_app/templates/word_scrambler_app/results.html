@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Word Scrambler Results</title>
+  </head>
+  <body>
+    {% if matches %}
+    <p>Matching words:</p>
+    <ul>
+      {% for word in matches %}
+      <li>{{ word }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No matches found.</p>
+    {% endif %}
+  </body>
+</html>

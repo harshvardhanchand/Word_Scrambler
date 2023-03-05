@@ -4,10 +4,10 @@
     <title>Word Scrambler</title>
   </head>
   <body>
-    <form method="post" action="{% url 'scrambler:results' %}">
+    <form method="post" action="{% url 'word_scrambler_app:results' %}">
       {% csrf_token %}
       <label for="scrambled_word">Enter a scrambled word:</label>
-      <input type="text" name="scrambled_word" />
+      <input type="text" name="word" />
       <input type="submit" value="Find Matches" />
     </form>
   </body>
