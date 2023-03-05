@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Word Scrambler</title>
+  </head>
+  <body>
+    <form method="post" action="{% url 'scrambler:results' %}">
+      {% csrf_token %}
+      <label for="scrambled_word">Enter a scrambled word:</label>
+      <input type="text" name="scrambled_word" />
+      <input type="submit" value="Find Matches" />
+    </form>
+  </body>
+</html>
